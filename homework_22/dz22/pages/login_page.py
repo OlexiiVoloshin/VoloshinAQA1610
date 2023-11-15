@@ -3,30 +3,28 @@ from selenium.webdriver.common.by import By
 from homework_22.dz22.pages.base_page import BasePage
 
 
-class LoginPage(BasePage):
-    __LOGIN_ICON_XPATH = (
-        By.XPATH,
-        "/html/body/div[1]/div[1]/header/div[2]/div/div[3]/div[1]",
-    )
-    __EMAIL_FIELD_XPATH = (By.XPATH, "//*[@id='login']")
-    __PASSWORD_FIELD_XPATH = (By.XPATH, "//*[@id='pw']")
-    __LOGIN_BUTTON_XPATH = (By.XPATH, "//*[@id='form-auth']/div/div/div[4]")
-    __ACCOUNT_ICON_XPATH = (
-        By.XPATH,
-        "/html/body/div[1]/div[1]/header/div[2]/div/div[3]/a[1]",
-    )
-    __EMAIL_TEXT_XPATH = (By.XPATH, "//*[@id='email']")
+class LoginPageLocators:
+    LOGIN_ICON = (By.XPATH, "/html/body/div[1]/div[1]/header/div[2]/div/div[3]/div[1]")
+    EMAIL_FIELD = (By.XPATH, "//*[@id='login']")
+    PASSWORD_FIELD = (By.XPATH, "//*[@id='pw']")
+    LOGIN_BUTTON = (By.XPATH, "//*[@id='form-auth']/div/div/div[4]")
+    ACCOUNT_ICON = (By.XPATH, "/html/body/div[1]/div[1]/header/div[2]/div/div[3]/a[1]")
+    EMAIL_TEXT = (By.XPATH, "//*[@id='email']")
 
+
+class LoginPage(BasePage):
     def login(self, username, password):
-        self.click(self.__LOGIN_ICON_XPATH)
+        self.click(LoginPageLocators.LOGIN_ICON)
         time.sleep(3)
-        self.enter_text(self.__EMAIL_FIELD_XPATH, username)
-        self.enter_text(self.__PASSWORD_FIELD_XPATH, password)
-        self.click(self.__LOGIN_BUTTON_XPATH)
+        self.enter_text(LoginPageLocators.EMAIL_FIELD, username)
+        self.enter_text(LoginPageLocators.PASSWORD_FIELD, password)
+        self.click(LoginPageLocators.LOGIN_BUTTON)
 
     def navigate_to_account(self):
-        self.click(self.__ACCOUNT_ICON_XPATH)
+        self.click(LoginPageLocators.ACCOUNT_ICON)
         time.sleep(3)
 
     def get_email_value(self):
-        return self.driver.find_element(*self.__EMAIL_TEXT_XPATH).get_attribute("value")
+        return self.driver.find_element(*LoginPageLocators.EMAIL_TEXT).get_attribute(
+            "value"
+        )

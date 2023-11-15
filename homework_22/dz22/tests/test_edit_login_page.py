@@ -8,17 +8,14 @@ def generate_random_string(length):
     return "".join(random.choice(string.ascii_letters) for _ in range(length))
 
 
-def test_edit_login(driver):
-    base_url = "https://makeup.com.ua/ua/"
-    username = "runyellowjack@gmail.com"
-    password = "Vtusya23"
+def test_edit_login(driver, base_url, login_credentials):
     new_name = generate_random_string(6)
     new_surname = generate_random_string(8)
 
     driver.get(base_url)
     edit_page = EditLoginPage(driver)
 
-    edit_page.login(username, password)
+    edit_page.login(login_credentials["username"], login_credentials["password"])
     time.sleep(3)
     edit_page.navigate_to_account()
     time.sleep(3)

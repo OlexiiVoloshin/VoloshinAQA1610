@@ -2,9 +2,7 @@ import time
 from homework_22.dz22.pages.cart_page import CartPage
 
 
-def test_add_to_cart(driver):
-    base_url = "https://makeup.com.ua/ua/"
-
+def test_add_to_cart(driver, base_url):
     driver.get(base_url)
     cart_page = CartPage(driver)
 

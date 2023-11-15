@@ -2,8 +2,7 @@ import time
 from homework_22.dz22.pages.language_change_page import LanguageChangePage
 
 
-def test_language_change(driver):
-    base_url = "https://makeup.com.ua/ua/"
+def test_language_change(driver, base_url):
     driver.get(base_url)
 
     language_page = LanguageChangePage(driver)
