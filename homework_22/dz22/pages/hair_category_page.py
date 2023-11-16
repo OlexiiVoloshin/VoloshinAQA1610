@@ -1,4 +1,3 @@
-import time
 from selenium.webdriver.common.by import By
 from homework_22.dz22.pages.base_page import BasePage
 
@@ -13,11 +12,10 @@ class HairCategoryPageLocators:
 class HairCategoryPage(BasePage):
     def navigate_to_hair_category(self):
         self.click(HairCategoryPageLocators.HAIR_CATEGORY_LINK)
+        return self
 
     def apply_filters(self):
         self.click(HairCategoryPageLocators.FILTER_1)
-        time.sleep(2)
         self.click(HairCategoryPageLocators.FILTER_2)
-        time.sleep(2)
         self.click(HairCategoryPageLocators.FILTER_3)
-        time.sleep(2)
+        return self

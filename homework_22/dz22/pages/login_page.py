@@ -1,4 +1,3 @@
-import time
 from selenium.webdriver.common.by import By
 from homework_22.dz22.pages.base_page import BasePage
 
@@ -15,14 +14,14 @@ class LoginPageLocators:
 class LoginPage(BasePage):
     def login(self, username, password):
         self.click(LoginPageLocators.LOGIN_ICON)
-        time.sleep(3)
         self.enter_text(LoginPageLocators.EMAIL_FIELD, username)
         self.enter_text(LoginPageLocators.PASSWORD_FIELD, password)
         self.click(LoginPageLocators.LOGIN_BUTTON)
+        return self
 
     def navigate_to_account(self):
         self.click(LoginPageLocators.ACCOUNT_ICON)
-        time.sleep(3)
+        return self
 
     def get_email_value(self):
         return self.driver.find_element(*LoginPageLocators.EMAIL_TEXT).get_attribute(

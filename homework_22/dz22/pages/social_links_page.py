@@ -4,6 +4,7 @@ from homework_22.dz22.pages.base_page import BasePage
 
 
 class SocialLinksPageLocators:
+    # Локатори для сторінки соціальних посилань
     ABOUT_STORE = (
         By.XPATH,
         "/html/body/div[1]/div[1]/header/div[1]/div/div[2]/ul/li[4]",
@@ -14,20 +15,32 @@ class SocialLinksPageLocators:
 
 
 class SocialLinksPage(BasePage):
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.locators = SocialLinksPageLocators
+
     def navigate_to_about_store(self):
-        self.click(SocialLinksPageLocators.ABOUT_STORE)
+        # Навігація до розділу "Про магазин"
+        self.click(self.locators.ABOUT_STORE)
+        return self
 
     def scroll_to_social_links(self):
-        action = ActionChains(self.driver)
-        action.move_to_element(
-            self.driver.find_element(*SocialLinksPageLocators.FACEBOOK_ICON)
-        ).perform()
+        # Прокрутка сторінки до соціальних посилань
+        instagram_icon = self.find_element(self.locators.INSTAGRAM_ICON)
+        ActionChains(self.driver).move_to_element(instagram_icon).perform()
+        return self
 
     def click_instagram_icon(self):
-        self.click(SocialLinksPageLocators.INSTAGRAM_ICON)
+        # Клік на іконку Instagram
+        self.click(self.locators.INSTAGRAM_ICON)
+        return self
 
     def click_facebook_icon(self):
-        self.click(SocialLinksPageLocators.FACEBOOK_ICON)
+        # Клік на іконку Facebook
+        self.click(self.locators.FACEBOOK_ICON)
+        return self
 
     def click_youtube_icon(self):
-        self.click(SocialLinksPageLocators.YOUTUBE_ICON)
+        # Клік на іконку YouTube
+        self.click(self.locators.YOUTUBE_ICON)
+        return self

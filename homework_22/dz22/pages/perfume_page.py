@@ -7,5 +7,6 @@ class PerfumePageLocators:
 
 
 class PerfumePage(BasePage):
-    def navigate_to_perfume_page(self):
+    def navigate_to_perfume(self):
         self.click(PerfumePageLocators.PERFUME_BANNER)
+        return self  # повертає поточний об'єкт для подальшого ланцюга викликів

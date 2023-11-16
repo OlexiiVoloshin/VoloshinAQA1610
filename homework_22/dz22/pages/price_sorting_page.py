@@ -1,4 +1,3 @@
-import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
@@ -20,15 +19,13 @@ class PriceSortingPage(BasePage):
     def navigate_to_category_and_select(self):
         category = self.driver.find_element(*PriceSortingPageLocators.CATEGORY)
         subcategory = self.driver.find_element(*PriceSortingPageLocators.SUBCATEGORY)
-
         actions = ActionChains(self.driver)
         actions.move_to_element(category).perform()
-        time.sleep(3)
         subcategory.click()
+        return self
 
     def apply_price_filter(self, price_from, price_to):
         self.click(PriceSortingPageLocators.PRICE_FILTER)
-        time.sleep(3)
         price_from_field = self.driver.find_element(
             *PriceSortingPageLocators.PRICE_FROM
         )
@@ -39,3 +36,4 @@ class PriceSortingPage(BasePage):
         price_to_field.clear()
         price_to_field.send_keys(str(price_to))
         price_to_field.send_keys(Keys.ENTER)
+        return self  # повертає поточний об'єкт

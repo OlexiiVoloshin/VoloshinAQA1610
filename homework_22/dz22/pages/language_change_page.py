@@ -14,9 +14,11 @@ class LanguageChangePageLocators:
 class LanguageChangePage(BasePage):
     def navigate_to_men_section(self):
         self.click(LanguageChangePageLocators.MEN_SECTION)
+        return self
 
     def change_language_to_ru(self):
         self.click(LanguageChangePageLocators.RU_LANGUAGE)
+        return self
 
     def get_header_text(self):
         return self.driver.find_element(*LanguageChangePageLocators.HEADER_TEXT).text

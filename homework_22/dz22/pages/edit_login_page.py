@@ -1,4 +1,3 @@
-import time
 from selenium.webdriver.common.by import By
 from homework_22.dz22.pages.base_page import BasePage
 
@@ -20,25 +19,21 @@ class EditLoginPageLocators:
 
 
 class EditLoginPage(BasePage):
-    def login(self, username, password):
+    def login_and_navigate(self, username, password):
         self.click(EditLoginPageLocators.LOGIN_ICON)
-        time.sleep(3)
         self.enter_text(EditLoginPageLocators.EMAIL_FIELD, username)
         self.enter_text(EditLoginPageLocators.PASSWORD_FIELD, password)
         self.click(EditLoginPageLocators.LOGIN_BUTTON)
-
-    def navigate_to_account(self):
         self.click(EditLoginPageLocators.ACCOUNT_ICON)
-        time.sleep(3)
+        return self
 
     def edit_name_and_surname(self, new_name, new_surname):
         self.enter_text(EditLoginPageLocators.NAME_FIELD, new_name)
         self.enter_text(EditLoginPageLocators.SURNAME_FIELD, new_surname)
         self.click(EditLoginPageLocators.SAVE_BUTTON)
-        time.sleep(3)
+        return self
 
-    def is_popup_visible(self):
-        return self.is_visible(EditLoginPageLocators.POPUP_WINDOW)
-
-    def close_popup(self):
+    def is_popup_visible_and_close(self):
+        popup_visible = self.is_visible(EditLoginPageLocators.POPUP_WINDOW)
         self.click(EditLoginPageLocators.CLOSE_POPUP)
+        return popup_visible

@@ -1,4 +1,3 @@
-import time
 from selenium.webdriver.common.by import By
 from homework_22.dz22.pages.base_page import BasePage
 
@@ -23,22 +22,26 @@ class CartPageLocators:
 
 
 class CartPage(BasePage):
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.locators = CartPageLocators
+
     def navigate_to_clothing_category(self):
         self.click(CartPageLocators.CLOTHING_CATEGORY)
+        return self
 
     def apply_men_filter(self):
         self.click(CartPageLocators.MEN_FILTER)
+        return self
 
     def select_product_and_buy(self):
         self.click(CartPageLocators.SELECT_PRODUCT)
-        time.sleep(3)
         self.click(CartPageLocators.BUY_BUTTON)
+        return self
 
     def close_popup_and_check_cart(self):
         self.click(CartPageLocators.CLOSE_POPUP)
-        time.sleep(3)
         self.click(CartPageLocators.CART_ICON)
-        time.sleep(3)
         return self.is_visible(CartPageLocators.CART_POPUP)
 
     def is_cart_popup_visible(self):
