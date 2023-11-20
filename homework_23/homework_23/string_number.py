@@ -1,15 +1,3 @@
-def is_number(string):
-    """
-    Функція для перевірки, чи є рядок числом.
-    Перевіряє, чи складається рядок тільки з цифр та містить не більше однієї крапки.
-    """
-    try:
-        float(string)
-        return True
-    except ValueError:
-        return False
-
-
 def main():
     """
     Головна функція програми.
@@ -19,12 +7,14 @@ def main():
         user_input = input("Введіть рядок для перевірки, або 'exit' для виходу: ")
 
         # Перевірка на команду виходу
-        if user_input.lower() == "exit":
+        if user_input.lower() == 'exit':
             print("Програма завершена.")
             break
 
+        # Використання лямбда-функції без присвоєння
+        result = (lambda s: s.replace('.', '', 1).isdigit() and s.count('.') < 2)(user_input)
+
         # Виведення результату
-        result = is_number(user_input)
         print(f"Рядок '{user_input}' є числом: {result}")
 
 

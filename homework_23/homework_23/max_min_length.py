@@ -1,13 +1,9 @@
 def find_lists_with_extreme_lengths(input_lists):
-    # Функція для знаходження довжини списку
-    def list_length(x):
-        return len(x)
-
     # Знаходимо список з максимальною довжиною
-    max_length_list = max(input_lists, key=list_length)
+    max_length_list = max(input_lists, key=lambda x: len(x))
 
     # Знаходимо список з мінімальною довжиною
-    min_length_list = min(input_lists, key=list_length)
+    min_length_list = min(input_lists, key=lambda x: len(x))
 
     return max_length_list, min_length_list
 
